@@ -16,6 +16,12 @@ app.use(express.static("public"));
 
 io.on("connection",function(socket){
     console.log("Connected");
+    socket.on("send-location",function(data){
+      io.emit("receive-location",{
+        id : socket.id,
+        ...data,
+      });
+    });
 });
 
 app.get('/', function(req, res) {
