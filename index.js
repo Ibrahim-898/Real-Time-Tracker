@@ -22,7 +22,12 @@ io.on("connection",function(socket){
         ...data,
       });
     });
+    socket.on("disconnect",function(){
+      io.emit("user disconnected",socket.id);
+    });
 });
+
+
 
 app.get('/', function(req, res) {
   res.render("index")
